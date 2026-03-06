@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Delight Digital Designs</title>
+  <meta name="description" content="The story behind Delight Digital Designs — built from 16 years in print, a love of problem solving, and a commitment to small town businesses." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #f5f9f7;
+      color: #1a3a2e;
+      overflow-x: hidden;
+    }
+
+    :root {
+      --forest: #1a5c3a;
+      --sage:   #3d8b6e;
+      --mint:   #7ecba1;
+      --sky:    #2e7ebf;
+      --blue:   #1a4f7a;
+      --water:  #6bb8e0;
+      --cream:  #f5f9f7;
+      --dark:   #0f2a1e;
+      --text:   #1a3a2e;
+      --muted:  #5a7a6a;
+      --white:  #ffffff;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(245,249,247,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--mint);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 68px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--forest);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .nav-logo span { color: var(--sky); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--muted);
+      transition: color 0.2s;
+      letter-spacing: 0.3px;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--forest); }
+    .nav-cta {
+      background: var(--sky);
+      color: var(--white) !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+    .nav-cta:hover { background: var(--blue) !important; transform: translateY(-1px); }
+
+    /* ─── HERO ─── */
+    .about-hero {
+      min-height: 52vh;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 5% 70px;
+    }
+    .about-hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #0f2a1e 0%, #1a5c3a 55%, #2e7ebf 100%);
+      z-index: 0;
+    }
+    .about-hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 15% 85%, rgba(126,203,161,0.18) 0%, transparent 50%),
+        radial-gradient(circle at 85% 15%, rgba(107,184,224,0.22) 0%, transparent 50%);
+    }
+    .about-hero-wave {
+      position: absolute;
+      bottom: -2px; left: 0; right: 0;
+      z-index: 1;
+    }
+    .about-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(126,203,161,0.2);
+      border: 1px solid var(--mint);
+      color: var(--mint);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 1.2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    .about-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5.5vw, 4.4rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    .about-hero h1 .accent { color: var(--mint); }
+    .about-hero-sub {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+      max-width: 500px;
+      font-weight: 600;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    /* ─── MAIN CONTENT ─── */
+    .about-body {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 80px 5% 100px;
+      background: #f5f9f7;
+    }
+
+    /* force page body to be clearly light */
+    body { background: #f5f9f7; }
+
+    /* ─── STORY SECTION ─── */
+    .story-intro {
+      margin-bottom: 4rem;
+    }
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 900;
+      color: #0f2a1e;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+    .story-text p {
+      font-size: 1.07rem;
+      color: #3d5a4a;
+      line-height: 1.85;
+      margin-bottom: 1.3rem;
+      font-weight: 600;
+    }
+    .story-text p:last-child { margin-bottom: 0; }
+
+    /* ─── PULL QUOTE ─── */
+    .pull-quote {
+      margin: 3rem 0;
+      padding: 2rem 2.5rem;
+      border-left: 5px solid var(--mint);
+      background: var(--white);
+      border-radius: 0 16px 16px 0;
+      box-shadow: 0 4px 24px rgba(26,92,58,0.07);
+    }
+    .pull-quote p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--forest);
+      line-height: 1.5;
+      font-style: italic;
+    }
+    .pull-quote cite {
+      display: block;
+      margin-top: 0.6rem;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+      font-style: normal;
+      text-transform: uppercase;
+    }
+
+    /* ─── PILLARS ─── */
+    .pillars {
+      margin: 4rem 0;
+    }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.4rem;
+      margin-top: 2rem;
+    }
+    .pillar-card {
+      background: var(--white);
+      border: 2px solid #e0ede7;
+      border-radius: 16px;
+      padding: 1.8rem;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .pillar-card:hover {
+      border-color: var(--mint);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 32px rgba(61,139,110,0.1);
+    }
+    .pillar-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+    .pillar-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--forest);
+      margin-bottom: 0.5rem;
+    }
+    .pillar-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.6; }
+
+    /* ─── TIMELINE ─── */
+    .timeline {
+      margin: 4rem 0;
+    }
+    .timeline-list {
+      position: relative;
+      padding-left: 2.5rem;
+      margin-top: 2rem;
+    }
+    .timeline-list::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--mint), var(--sky));
+      border-radius: 2px;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.2rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.07rem;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      background: var(--sage);
+      border: 2px solid var(--white);
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px rgba(61,139,110,0.2);
+    }
+    .timeline-item h4 {
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--forest);
+      margin-bottom: 0.25rem;
+    }
+    .timeline-item p {
+      font-size: 0.93rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ─── CTA ─── */
+    .about-cta {
+      background: linear-gradient(145deg, #0f2a1e, #1a5c3a);
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      text-align: center;
+      color: var(--white);
+      margin-top: 4rem;
+    }
+    .about-cta h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      margin-bottom: 0.8rem;
+    }
+    .about-cta p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 420px;
+      margin: 0 auto 1.8rem;
+      line-height: 1.7;
+      font-weight: 600;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--sky);
+      color: var(--white);
+      padding: 0.85rem 2.2rem;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(46,126,191,0.4);
+      margin-right: 0.8rem;
+    }
+    .btn-primary:hover { background: var(--blue); transform: translateY(-2px); }
+    .btn-outline {
+      display: inline-block;
+      background: transparent;
+      color: var(--white);
+      padding: 0.85rem 2.2rem;
+      border-radius: 50px;
+      border: 2px solid rgba(255,255,255,0.4);
+      font-weight: 800;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 2rem 5%;
+      font-size: 0.88rem;
+    }
+    footer a { color: var(--mint); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    footer strong { color: rgba(255,255,255,0.85); }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .about-body { padding: 60px 5% 80px; }
+      .about-cta { padding: 2.2rem 1.5rem; }
+      .btn-primary, .btn-outline { display: block; margin: 0.5rem auto; max-width: 260px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Triple <span>D</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#pricing">Pricing</a></li>
+    <li><a href="index.html#portfolio">Portfolio</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="intake.html" class="nav-cta">Start Your Project</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="about-hero">
+  <div class="about-hero-bg"></div>
+  <div class="about-hero-content">
+    <div class="hero-badge">🌿 Our Story</div>
+    <h1>Built from experience.<br>Focused on <span class="accent">your success.</span></h1>
+    <p class="about-hero-sub">Delight Digital Designs grew out of a simple realization — small town businesses deserve great websites too.</p>
+  </div>
+  <svg class="about-hero-wave" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 80L1440 80L1440 30C1200 70 960 10 720 40C480 70 240 10 0 30L0 80Z" fill="#f5f9f7"/>
+  </svg>
+</section>
+
+<!-- BODY -->
+<div style="background:#f5f9f7; width:100%;">
+<div class="about-body">
+
+  <!-- Origin Story -->
+  <div class="story-intro reveal">
+    <div class="section-label">Where It Began</div>
+    <h2 class="section-title">Sixteen years in print.<br>One clear next step.</h2>
+    <div class="story-text">
+      <p>Delight Digital Designs was created from a simple realization: many small businesses need practical, affordable websites that actually work for them.</p>
+      <p>After spending more than sixteen years working in the printing industry, I became deeply familiar with how businesses present themselves to customers through printed materials — books, catalogs, magazines, and marketing pieces. During that time I began building Excel tools to solve pricing challenges inside the company. Those spreadsheets eventually grew into complex calculators that automated production estimates.</p>
+      <p>That problem-solving process led naturally into web development. When the company needed e-commerce and website solutions, I began building sites and integrating those same calculator systems online. What started as a technical project quickly became something I genuinely enjoyed.</p>
+    </div>
+  </div>
+
+  <div class="pull-quote reveal">
+    <p>"Building websites combines two things I value: logical problem solving and creative design. A well-built website should help a business communicate clearly, organize information, and make it easier for customers to connect."</p>
+    <cite>— Founder, Delight Digital Designs</cite>
+  </div>
+
+  <div class="story-text reveal">
+    <p>Living in a small town also made something very clear to me. Many local businesses simply need reliable websites that are straightforward, professional, and easy to manage — without unnecessary complexity or high costs.</p>
+    <p>Delight Digital Designs was created to provide exactly that. The goal is simple: build practical websites that help businesses present themselves professionally online, connect with their customers, and grow over time.</p>
+    <p>Every project is an opportunity to keep learning, keep improving, and help bring someone else's idea to life on the web.</p>
+  </div>
+
+  <!-- Core Values -->
+  <div class="pillars reveal">
+    <div class="section-label">What We Stand For</div>
+    <h2 class="section-title">The principles behind every project</h2>
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-icon">🔧</div>
+        <h3>Practical First</h3>
+        <p>Websites should work. Every design decision serves a real purpose for your business and your customers.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">💬</div>
+        <h3>Real People, Real Support</h3>
+        <p>You'll always reach someone who knows your project. No ticket queues, no runaround.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">🌿</div>
+        <h3>Small Town Values</h3>
+        <p>We understand what it means to run a local business — because we are one.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">📈</div>
+        <h3>Built to Grow</h3>
+        <p>Your website should be a long-term asset, not just a digital brochure. We build with growth in mind.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Journey Timeline -->
+  <div class="timeline reveal">
+    <div class="section-label">The Journey</div>
+    <h2 class="section-title">How we got here</h2>
+    <div class="timeline-list">
+      <div class="timeline-item">
+        <h4>16+ Years in Print</h4>
+        <p>Deep experience in how businesses communicate through printed materials — books, catalogs, marketing pieces, and more.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Excel Tools & Automation</h4>
+        <p>Built complex pricing calculators and production estimate tools, developing a love for solving problems through systems.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>First Websites & Integrations</h4>
+        <p>Took on e-commerce and web projects, integrating custom calculator tools and discovering a passion for building online.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Delight Digital Designs</h4>
+        <p>Founded Triple D to serve the small town businesses that need a strong online presence most — affordably and without the headaches.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="about-cta reveal">
+    <h2>Ready to work together?</h2>
+    <p>Let's talk about your business and what a great website could do for you.</p>
+    <a href="intake.html" class="btn-primary">Start Your Project</a>
+    <a href="index.html#pricing" class="btn-outline">See Pricing</a>
+  </div>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p style="margin-bottom:0.4rem;">
+    <strong>Delight Digital Designs</strong> — Big online presence for small town businesses.
+  </p>
+  <p>
+    <a href="https://delightdigitaldesigns.com">delightdigitaldesigns.com</a> &nbsp;·&nbsp;
+    <a href="https://dddwebsites.com">dddwebsites.com</a>
+  </p>
+  <p style="margin-top:0.8rem; font-size:0.8rem; opacity:0.55;">
+    A division of Sturm &amp; Róisín LLC &nbsp;·&nbsp; © 2025 Delight Digital Designs. All rights reserved.
+  </p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

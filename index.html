@@ -510,9 +510,86 @@
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
+    /* ─── HAMBURGER BUTTON ─── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      z-index: 200;
+    }
+    .nav-hamburger span {
+      display: block;
+      height: 2.5px;
+      width: 100%;
+      background: var(--forest);
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      transform-origin: center;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    /* ─── MOBILE DRAWER ─── */
+    .mobile-drawer {
+      display: none;
+      position: fixed;
+      top: 68px; left: 0; right: 0;
+      background: rgba(245,249,247,0.98);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--mint);
+      z-index: 99;
+      padding: 1.5rem 5% 2rem;
+      flex-direction: column;
+      gap: 0;
+      transform: translateY(-8px);
+      opacity: 0;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      pointer-events: none;
+    }
+    .mobile-drawer.open {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+    .mobile-drawer a {
+      display: block;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--muted);
+      padding: 0.9rem 0;
+      border-bottom: 1px solid rgba(126,203,161,0.25);
+      transition: color 0.2s;
+    }
+    .mobile-drawer a:last-child { border-bottom: none; }
+    .mobile-drawer a:hover { color: var(--forest); }
+    .mobile-drawer .drawer-cta {
+      margin-top: 1rem;
+      display: block;
+      text-align: center;
+      background: var(--sky);
+      color: var(--white) !important;
+      padding: 0.85rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 1rem;
+      border-bottom: none !important;
+    }
+    .mobile-drawer .drawer-cta:hover { background: var(--blue); }
+
     /* ─── MOBILE ─── */
     @media (max-width: 768px) {
       .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .mobile-drawer { display: flex; }
       .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
       .form-row { grid-template-columns: 1fr; }
       .addon-card { flex-direction: column; }
@@ -529,9 +606,20 @@
     <li><a href="#services">Services</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="about.html">About</a></li>
     <li><a href="intake.html" class="nav-cta">Start Your Project</a></li>
   </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
 </nav>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <a href="#services" class="drawer-link">Services</a>
+  <a href="#pricing" class="drawer-link">Pricing</a>
+  <a href="#portfolio" class="drawer-link">Portfolio</a>
+  <a href="about.html" class="drawer-link">About</a>
+  <a href="intake.html" class="drawer-cta">Start Your Project &rarr;</a>
+</div>
 
 <!-- HERO -->
 <section id="home">
@@ -800,6 +888,21 @@
       btn.textContent = 'Send Message →';
       btn.disabled = false;
     }
+  });
+
+  // ─── HAMBURGER MENU ───
+  const hamburger = document.getElementById('hamburger');
+  const drawer = document.getElementById('mobileDrawer');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    drawer.classList.toggle('open');
+  });
+  // Close drawer when any drawer link is clicked
+  drawer.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      drawer.classList.remove('open');
+    });
   });
 </script>
 </body>
