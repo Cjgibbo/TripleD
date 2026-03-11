@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submit a Change Request | Delight Digital Designs</title>
+  <meta name="description" content="Active Triple D clients — submit your website update or change request here." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito', sans-serif; background: #f5f9f7; color: #1a3a2e; overflow-x: hidden; }
+
+    :root {
+      --forest: #1a5c3a; --sage: #3d8b6e; --mint: #7ecba1;
+      --sky: #2e7ebf; --blue: #1a4f7a; --cream: #f5f9f7;
+      --dark: #0f2a1e; --muted: #5a7a6a; --white: #ffffff;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(245,249,247,0.95); backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--mint);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 68px;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; color: var(--forest); text-decoration: none; }
+    .nav-logo span { color: var(--sky); }
+    .nav-back { text-decoration: none; font-weight: 700; font-size: 0.9rem; color: var(--muted); transition: color 0.2s; }
+    .nav-back:hover { color: var(--forest); }
+
+    /* HERO STRIP */
+    .page-hero {
+      background: linear-gradient(135deg, #0f2a1e 0%, #1a4f7a 60%, #1a5c3a 100%);
+      padding: 120px 5% 60px;
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 15% 50%, rgba(126,203,161,0.12) 0%, transparent 55%),
+                  radial-gradient(circle at 85% 30%, rgba(46,126,191,0.18) 0%, transparent 50%);
+    }
+    .page-hero-content { position: relative; z-index: 1; max-width: 640px; }
+    .hero-badge {
+      display: inline-block; background: rgba(46,126,191,0.25);
+      border: 1px solid var(--sky); color: var(--sky);
+      font-size: 0.78rem; font-weight: 800; letter-spacing: 1.5px;
+      text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 50px; margin-bottom: 1.2rem;
+    }
+    .page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; color: var(--white); line-height: 1.15; margin-bottom: 1rem; }
+    .page-hero h1 span { color: var(--mint); }
+    .page-hero p { font-size: 1rem; color: rgba(255,255,255,0.75); line-height: 1.7; font-weight: 600; max-width: 520px; }
+
+    .client-only-notice {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      margin-top: 1.4rem;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50px;
+      padding: 0.5rem 1.1rem;
+      font-size: 0.82rem; font-weight: 700; color: rgba(255,255,255,0.65);
+    }
+    .client-only-notice .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--mint);
+      box-shadow: 0 0 6px var(--mint);
+      flex-shrink: 0;
+    }
+
+    .hero-wave { display: block; width: 100%; }
+
+    /* PLAN BADGE STRIP */
+    .plan-strip {
+      background: var(--white);
+      border-bottom: 2px solid #e0ede7;
+      padding: 1rem 5%;
+      display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;
+    }
+    .plan-strip-label { font-size: 0.8rem; font-weight: 800; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+    .plan-pill {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.35rem 0.9rem; border-radius: 50px;
+      font-size: 0.82rem; font-weight: 800;
+    }
+    .pill-lighthouse { background: rgba(61,139,110,0.1); color: var(--sage); border: 1px solid rgba(61,139,110,0.3); }
+    .pill-sentinel { background: rgba(26,92,58,0.1); color: var(--forest); border: 1px solid rgba(26,92,58,0.3); }
+    .pill-guardian { background: rgba(46,126,191,0.1); color: var(--blue); border: 1px solid rgba(46,126,191,0.3); }
+
+    /* FORM AREA */
+    .form-wrapper { max-width: 820px; margin: 0 auto; padding: 50px 5% 80px; }
+
+    .form-section {
+      background: var(--white); border-radius: 20px;
+      border: 2px solid #e0ede7; padding: 2.2rem 2rem;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.5s ease both;
+    }
+    .form-section-title {
+      font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700;
+      color: var(--forest); margin-bottom: 0.3rem; display: flex; align-items: center; gap: 0.6rem;
+    }
+    .form-section-sub { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.5; }
+
+    .field-group { display: flex; flex-direction: column; gap: 1rem; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    label { display: block; font-weight: 700; font-size: 0.88rem; color: var(--forest); margin-bottom: 0.35rem; }
+    label .req { color: var(--sky); margin-left: 2px; }
+    label .note { font-weight: 600; color: var(--muted); font-size: 0.8rem; margin-left: 4px; }
+
+    input[type="text"], input[type="email"], input[type="tel"], input[type="url"],
+    textarea, select {
+      width: 100%; background: var(--cream); border: 2px solid #d0e6da;
+      border-radius: 10px; padding: 0.8rem 1rem;
+      color: var(--dark); font-family: 'Nunito', sans-serif; font-size: 0.95rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none; border-color: var(--sage); background: var(--white);
+    }
+    input::placeholder, textarea::placeholder { color: #aac4b5; }
+    textarea { resize: vertical; min-height: 100px; }
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a7a6a' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem;
+    }
+    select option { background: var(--white); }
+
+    /* Request type checkboxes */
+    .checkbox-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.6rem; }
+    .checkbox-item { display: flex; align-items: center; gap: 0.6rem; cursor: pointer; padding: 0.5rem 0.7rem; border-radius: 8px; border: 1.5px solid #e0ede7; transition: border-color 0.2s, background 0.2s; }
+    .checkbox-item:hover { border-color: var(--mint); background: rgba(126,203,161,0.05); }
+    .checkbox-item input[type="checkbox"] { width: 17px; height: 17px; accent-color: var(--sage); cursor: pointer; flex-shrink: 0; }
+    .checkbox-item span { font-size: 0.9rem; color: var(--dark); font-weight: 600; }
+
+    /* Priority cards */
+    .priority-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .priority-card {
+      border: 2px solid #e0ede7; border-radius: 12px; padding: 1.1rem 1.2rem;
+      cursor: pointer; transition: border-color 0.2s, background 0.2s;
+      display: flex; align-items: flex-start; gap: 0.8rem;
+    }
+    .priority-card input[type="radio"] { margin-top: 3px; accent-color: var(--sage); flex-shrink: 0; }
+    .priority-card:has(input:checked) { border-color: var(--sage); background: rgba(61,139,110,0.05); }
+    .priority-card.urgent:has(input:checked) { border-color: var(--sky); background: rgba(46,126,191,0.05); }
+    .priority-card-title { font-weight: 800; font-size: 0.92rem; color: var(--dark); }
+    .priority-card-sub { font-size: 0.8rem; color: var(--muted); margin-top: 0.15rem; line-height: 1.4; }
+
+    /* Acknowledgment box */
+    .ack-box {
+      background: rgba(26,92,58,0.06);
+      border: 2px solid rgba(61,139,110,0.3);
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+      display: flex; align-items: flex-start; gap: 0.9rem;
+    }
+    .ack-box input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--forest); flex-shrink: 0; margin-top: 2px; }
+    .ack-box label { font-size: 0.92rem; color: var(--forest); font-weight: 700; line-height: 1.5; margin-bottom: 0; cursor: pointer; }
+    .ack-box label span { font-weight: 600; color: var(--muted); display: block; margin-top: 0.2rem; font-size: 0.85rem; }
+
+    /* Submit */
+    .submit-area { text-align: center; margin-top: 2rem; }
+    .btn-submit {
+      background: var(--sky); color: var(--white); border: none;
+      border-radius: 50px; padding: 1rem 3rem;
+      font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.05rem;
+      cursor: pointer; transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 4px 20px rgba(46,126,191,0.35);
+    }
+    .btn-submit:hover { background: var(--blue); transform: translateY(-2px); }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .submit-note { font-size: 0.82rem; color: var(--muted); margin-top: 0.8rem; line-height: 1.5; }
+
+    .form-success {
+      display: none; background: rgba(61,139,110,0.08); border: 2px solid var(--sage);
+      border-radius: 16px; padding: 2.5rem 2rem; text-align: center; margin-top: 1.5rem;
+    }
+    .form-success h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--forest); margin-bottom: 0.6rem; }
+    .form-success p { color: var(--muted); line-height: 1.6; }
+
+    /* Footer */
+    footer { background: var(--dark); color: rgba(255,255,255,0.55); text-align: center; padding: 1.8rem 5%; font-size: 0.85rem; }
+    footer strong { color: rgba(255,255,255,0.8); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 640px) {
+      .field-row { grid-template-columns: 1fr; }
+      .priority-grid { grid-template-columns: 1fr; }
+      .form-section { padding: 1.5rem 1.2rem; }
+      .plan-strip { gap: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Triple <span>D</span></a>
+  <a href="index.html" class="nav-back">← Back to Home</a>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-content">
+    <div class="hero-badge">⚙️ Client Portal</div>
+    <h1>Website <span>Change Request</span></h1>
+    <p>Submit your update clearly and completely — we'll handle it within your plan timeline. No calls, no back-and-forth.</p>
+    <div class="client-only-notice">
+      <div class="dot"></div>
+      For active Triple D subscription clients only
+    </div>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 60L1440 60L1440 20C1200 55 960 5 720 30C480 55 240 5 0 20L0 60Z" fill="#f5f9f7"/>
+  </svg>
+</div>
+
+<!-- PLAN REFERENCE STRIP -->
+<div class="plan-strip">
+  <span class="plan-strip-label">Your plan allotment:</span>
+  <span class="plan-pill pill-lighthouse">🔦 Lighthouse — hosting only, no updates</span>
+  <span class="plan-pill pill-sentinel">⚔️ Sentinel — 2 updates/mo</span>
+  <span class="plan-pill pill-guardian">🛡️ Guardian — unlimited updates</span>
+</div>
+
+<!-- FORM -->
+<div class="form-wrapper">
+  <form id="changeForm" action="https://formspree.io/f/xaqdrwro" method="POST">
+
+    <input type="hidden" name="_subject" value="Website Change Request — Triple D Client" />
+    <input type="hidden" name="form_type" value="Change Request" />
+
+    <!-- SECTION 1: Client ID -->
+    <div class="form-section" style="animation-delay:0.05s">
+      <div class="form-section-title">🪪 Client Information</div>
+      <div class="form-section-sub">Help us pull up your account quickly.</div>
+      <div class="field-group">
+        <div class="field-row">
+          <div>
+            <label>Business Name <span class="req">*</span></label>
+            <input type="text" name="business_name" placeholder="e.g. Main Street Hardware" required />
+          </div>
+          <div>
+            <label>Your Name <span class="req">*</span></label>
+            <input type="text" name="contact_name" placeholder="First & Last Name" required />
+          </div>
+        </div>
+        <div class="field-row">
+          <div>
+            <label>Email Address <span class="req">*</span></label>
+            <input type="email" name="contact_email" placeholder="you@yourbusiness.com" required />
+          </div>
+          <div>
+            <label>Your Website URL <span class="req">*</span></label>
+            <input type="url" name="website_url" placeholder="https://yourbusiness.com" required />
+          </div>
+        </div>
+        <div>
+          <label>Subscription Plan <span class="req">*</span></label>
+          <select name="subscription_plan" required>
+            <option value="" disabled selected>Select your current plan...</option>
+            <option value="lighthouse">🔦 Lighthouse — $19.99/mo (hosting only)</option>
+            <option value="sentinel">⚔️ Sentinel — $49.99/mo (up to 2 updates/mo)</option>
+            <option value="guardian">🛡️ Guardian — $79.99/mo (unlimited updates)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: Request Type -->
+    <div class="form-section" style="animation-delay:0.1s">
+      <div class="form-section-title">🔧 Type of Change</div>
+      <div class="form-section-sub">Check all that apply to this request. Each submission counts as one change toward your monthly allotment unless otherwise discussed.</div>
+      <div class="checkbox-grid">
+        <label class="checkbox-item"><input type="checkbox" name="change_type[]" value="Text edit" /><span>✏️ Text edit</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="change_type[]" value="Image replacement" /><span>🖼️ Image replacement</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="change_type[]" value="New page" /><span>📄 New page</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="change_type[]" value="New blog post" /><span>📝 New blog post</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="change_type[]" value="Layout / design adjustment" /><span>🎨 Layout / design adjustment</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="change_type[]" value="Hours or contact info update" /><span>🕐 Hours or contact info</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="change_type[]" value="Add or remove a link" /><span>🔗 Add or remove a link</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="change_type[]" value="Form or tool change" /><span>⚙️ Form or tool change</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="change_type[]" value="Other" /><span>💬 Other</span></label>
+      </div>
+    </div>
+
+    <!-- SECTION 3: Priority -->
+    <div class="form-section" style="animation-delay:0.15s">
+      <div class="form-section-title">⚡ Priority Level</div>
+      <div class="form-section-sub">Standard requests are handled within your plan's normal timeline. Urgent requests may be subject to a rush fee — we'll confirm before proceeding.</div>
+      <div class="priority-grid">
+        <label class="priority-card">
+          <input type="radio" name="priority" value="Standard" required />
+          <div>
+            <div class="priority-card-title">Standard</div>
+            <div class="priority-card-sub">Within normal plan timeline. No rush needed.</div>
+          </div>
+        </label>
+        <label class="priority-card urgent">
+          <input type="radio" name="priority" value="Urgent" />
+          <div>
+            <div class="priority-card-title">⚠️ Urgent</div>
+            <div class="priority-card-sub">Time-sensitive. May incur a rush fee — we'll confirm first.</div>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- SECTION 4: Description -->
+    <div class="form-section" style="animation-delay:0.2s">
+      <div class="form-section-title">📋 Change Description</div>
+      <div class="form-section-sub">The more specific, the faster we can act. Tell us exactly what to change and where it lives on your site.</div>
+      <div class="field-group">
+        <div>
+          <label>What page is this change on? <span class="req">*</span></label>
+          <input type="text" name="page_location" placeholder="e.g. Home page, About page, Contact page, all pages..." required />
+        </div>
+        <div>
+          <label>Describe the change in detail <span class="req">*</span></label>
+          <textarea name="change_description" placeholder="Be as specific as possible. For text edits, include the old text and new text. For image swaps, describe what the new image should show. For layout changes, describe what you want moved or adjusted..." style="min-height:150px;" required></textarea>
+        </div>
+        <div>
+          <label>Google Drive link <span class="note">(optional — for screenshots, images, or files)</span></label>
+          <input type="url" name="drive_link" placeholder="https://drive.google.com/..." />
+          <p style="font-size:0.8rem;color:var(--muted);margin-top:0.4rem;">Share any files (screenshots, new images, documents) via Google Drive and paste the link above. Make sure sharing is set to "Anyone with the link."</p>
+        </div>
+        <div>
+          <label>Requested completion date <span class="note">(optional)</span></label>
+          <input type="text" name="deadline" placeholder="e.g. Before Friday, by end of month, no rush..." />
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 5: Acknowledgment -->
+    <div class="form-section" style="animation-delay:0.25s">
+      <div class="form-section-title">✅ Acknowledgment</div>
+      <div class="form-section-sub">Please confirm before submitting.</div>
+      <div class="ack-box">
+        <input type="checkbox" id="ack" name="acknowledged_allotment" value="Yes" required />
+        <label for="ack">
+          I understand this request counts toward my monthly change allotment.
+          <span>Sentinel clients receive up to 2 updates per month. Guardian clients have unlimited updates. Requests that exceed your plan or require major new features will be quoted separately before any work begins.</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- SUBMIT -->
+    <div class="submit-area">
+      <button type="submit" class="btn-submit">Submit Change Request →</button>
+      <p class="submit-note">We'll confirm receipt and let you know when your update is complete.<br>Questions? Reply to your confirmation email or reach us at sturmroisin@gmail.com.</p>
+      <div class="form-success" id="formSuccess">
+        <h3>✅ Request Received</h3>
+        <p>We've got your change request and will be in touch to confirm. Thank you for being a Triple D client — we'll take it from here.</p>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Delight Digital Designs</strong> — Big online presence for small town businesses.</p>
+  <p style="margin-top:0.4rem; font-size:0.78rem; opacity:0.6;">A division of Sturm & Róisín LLC · For active clients only</p>
+</footer>
+
+<script>
+  const form = document.getElementById('changeForm');
+  const success = document.getElementById('formSuccess');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = form.querySelector('.btn-submit');
+    btn.textContent = 'Submitting...';
+    btn.disabled = true;
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.querySelectorAll('input, textarea, select, button').forEach(el => el.disabled = true);
+        success.style.display = 'block';
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        btn.textContent = 'Submit Change Request →';
+        btn.disabled = false;
+        alert('Something went wrong. Please try again or email us directly at sturmroisin@gmail.com.');
+      }
+    } catch {
+      btn.textContent = 'Submit Change Request →';
+      btn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
