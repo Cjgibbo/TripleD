@@ -225,7 +225,7 @@
   <span class="plan-strip-label">Your plan allotment:</span>
   <span class="plan-pill pill-lighthouse">🔦 Lighthouse — hosting only, no updates</span>
   <span class="plan-pill pill-sentinel">⚔️ Sentinel — 2 updates/mo</span>
-  <span class="plan-pill pill-guardian">🛡️ Guardian — unlimited updates</span>
+  <span class="plan-pill pill-guardian">🛡️ Guardian — 5 updates/mo + emergency support</span>
 </div>
 
 <!-- FORM -->
@@ -264,9 +264,9 @@
           <label>Subscription Plan <span class="req">*</span></label>
           <select name="subscription_plan" required>
             <option value="" disabled selected>Select your current plan...</option>
-            <option value="lighthouse">🔦 Lighthouse — $19.99/mo (hosting only)</option>
+            <option value="lighthouse">🔦 Lighthouse — $24.99/mo (hosting only)</option>
             <option value="sentinel">⚔️ Sentinel — $49.99/mo (up to 2 updates/mo)</option>
-            <option value="guardian">🛡️ Guardian — $79.99/mo (unlimited updates)</option>
+            <option value="guardian">🛡️ Guardian — $79.99/mo (priority & emergency support)</option>
           </select>
         </div>
       </div>
@@ -344,7 +344,7 @@
         <input type="checkbox" id="ack" name="acknowledged_allotment" value="Yes" required />
         <label for="ack">
           I understand this request counts toward my monthly change allotment.
-          <span>Sentinel clients receive up to 2 updates per month. Guardian clients have unlimited updates. Requests that exceed your plan or require major new features will be quoted separately before any work begins.</span>
+          <span>Sentinel clients receive up to 2 updates per month. Guardian clients receive up to 5 updates per month plus emergency support. Requests that exceed your plan or require major new features will be quoted separately before any work begins.</span>
         </label>
       </div>
     </div>
@@ -352,7 +352,7 @@
     <!-- SUBMIT -->
     <div class="submit-area">
       <button type="submit" class="btn-submit">Submit Change Request →</button>
-      <p class="submit-note">We'll confirm receipt and let you know when your update is complete.<br>Questions? Reply to your confirmation email or reach us at sturmroisin@gmail.com.</p>
+      <p class="submit-note">We'll confirm receipt and let you know when your update is complete.<br>Questions? Reply to your confirmation email or reach us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="77040302051a05181e041e1937101a161e1b5914181a">[email&#160;protected]</a>.</p>
       <div class="form-success" id="formSuccess">
         <h3>✅ Request Received</h3>
         <p>We've got your change request and will be in touch to confirm. Thank you for being a Triple D client — we'll take it from here.</p>
@@ -368,7 +368,7 @@
   <p style="margin-top:0.4rem; font-size:0.78rem; opacity:0.6;">A division of Sturm & Róisín LLC · For active clients only</p>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const form = document.getElementById('changeForm');
   const success = document.getElementById('formSuccess');
 
@@ -390,13 +390,4 @@
       } else {
         btn.textContent = 'Submit Change Request →';
         btn.disabled = false;
-        alert('Something went wrong. Please try again or email us directly at sturmroisin@gmail.com.');
-      }
-    } catch {
-      btn.textContent = 'Submit Change Request →';
-      btn.disabled = false;
-    }
-  });
-</script>
-</body>
-</html>
+        alert
